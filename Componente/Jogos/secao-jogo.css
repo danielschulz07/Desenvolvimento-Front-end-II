@@ -1,0 +1,72 @@
+.games {
+    padding: 60px 10%;
+    text-align: center;
+}
+
+.games h2 {
+    margin-bottom: 40px;
+    font-size: 32px;
+}
+
+.game-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.game-card {
+    background-color: #2a475e;
+    padding: 20px;
+    width: 250px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+.game-img {
+    height: 150px;
+    background-color: #1b2838;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.contact {
+    padding: 60px 10%;
+    background-color: #171a21;
+    text-align: center;
+}
+
+.contact h2 {
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+form input {
+    padding: 10px;
+    width: 250px;
+    border: none;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #5c7e10;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #7aa32d;
+}

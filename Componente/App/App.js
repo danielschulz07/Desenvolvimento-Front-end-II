@@ -158,7 +158,6 @@ const criarLink = (texto, link) => {
     return a;
 }
 
-const app = document.getElementById("app");
 
 document.addEventListener('click', function(event) {
     if(event.target.matches("[data-link]")) {
@@ -173,33 +172,25 @@ window.addEventListener("popstate", function() {
 })
 
 const rotas = {
-    "/Loja": {
-        renderizar: function() {
+    "/": () =>{
+            return `<h1>home</h1>`
+    },
+    "/Loja": () =>{
             alert("lao")
-        }
     },
-    "/Comunidade": {
-        renderizar: function() {
-            return `deu certo ir pra comunidade`
-        }
+    "/Comunidade": () =>{
+            return `<h1>alo</h1>>`
     },
-    "/Jogos": {
-        renderizar: function() {
+    "/Jogos": ()=> {
             return paginaJogoHTMl()
-        }
     },
-    "/Sobre": {
-        renderizar: function() {
+    "/Sobre": () =>{
             return `deu certo ir pra sobre`
-        }
     },
-    "/Instalar": {
-        renderizar: function(){
+    "/Instalar": () =>{
             return `deu certo o instalador`
-        }
     }
 }
-
 
 
 function navegarPara(path) {
@@ -208,15 +199,24 @@ function navegarPara(path) {
 }
 
 function rednerizandoRotas(path) {
-    if(rotas[path]){
-        app.innerHTML = rotas[path].renderizar();
-    }else {
-        app.innerHTML = `
-        <h1>404</h1>
-       <p>Pagina não encontrada.</p>`;
+    let partes = path.split("/");
+
+    const novoPath = "/" + partes[1];
+    const pagina = rotas[novoPath]
+
+    if (pagina) {
+        if (partes[1] === "Jogos") {
+            const id = partes[2];
+            root.innerHTML = pagina(id)
+        } else {
+            root.innerHTML = pagina();
+        }
+    } else {
+        root.innerHTML = `
+                <h1>404</h1>
+                <p>Pagina não encontrada.</p>`;
     }
 }
-
 
 
 

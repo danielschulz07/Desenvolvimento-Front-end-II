@@ -40,6 +40,7 @@ export const criaSecaoJogos = () => {
     h2.textContent = "Jogos em Destaque";
 
     const div = document.createElement('div');
+    div.addEventListener
     div.classList.add('game-grid');
     div.setAttribute("id", "cardsGrid");
 

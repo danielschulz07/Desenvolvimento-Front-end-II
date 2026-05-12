@@ -172,25 +172,33 @@ window.addEventListener("popstate", function() {
 })
 
 const rotas = {
-    "/": () =>{
-            return `<h1>home</h1>`
+    "/": () => {
+        root.appendChild(initApp());
     },
-    "/Loja": () =>{
-            alert("lao")
+    "/Loja": () => {
+        root.appendChild(initApp());
     },
-    "/Comunidade": () =>{
-            return `<h1>alo</h1>>`
+    "/Comunidade": () => {
+        root.appendChild(criaHeader());
+        root.appendChild(Jogos.criaHero());
     },
-    "/Jogos": ()=> {
-            return paginaJogoHTMl()
+    "/Jogos": (id) => {
+                let jogo = Jogos.encontrarJogo(id);
+
+        root.appendChild(criaHeader());
+        root.appendChild(Jogos.criaSecaoJogoPrincipal(jogo.titulo, jogo.descricao, jogo.url_imagem  ));
+        root.appendChild(criaFooter());
     },
-    "/Sobre": () =>{
-            return `deu certo ir pra sobre`
+    "/Sobre": () => {
+        root.appendChild(criaHeader());
+        root.appendChild(
+            criaHero("Sobre", "A STEAM é uma plataforma")
+        );
     },
-    "/Instalar": () =>{
-            return `deu certo o instalador`
-    }
-}
+    "/Instalar": () => {
+        root.innerHTML = `<h1>Deu certo o instalador</h1>`;
+    },
+};
 
 
 function navegarPara(path) {
@@ -202,19 +210,22 @@ function rednerizandoRotas(path) {
     let partes = path.split("/");
 
     const novoPath = "/" + partes[1];
-    const pagina = rotas[novoPath]
+    const pagina = rotas[novoPath];
+
+    root.innerHTML = "";
 
     if (pagina) {
         if (partes[1] === "Jogos") {
             const id = partes[2];
-            root.innerHTML = pagina(id)
+            pagina(id);
         } else {
-            root.innerHTML = pagina();
+            pagina();
         }
     } else {
         root.innerHTML = `
-                <h1>404</h1>
-                <p>Pagina não encontrada.</p>`;
+            <h1>404</h1>
+            <p>Página não encontrada.</p>
+        `;
     }
 }
 

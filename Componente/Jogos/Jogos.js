@@ -1,9 +1,11 @@
 import dados from "./Jogos.json" with {type: "json"};
 
-export const criaCard = (nome, desconto, url) => {
+export const criaCard = (nome, desconto, url, id) => {
     const card = document.createElement("div");
 
     card.classList.add("game-card");
+    card.setAttribute("href", "/Jogos/" + id);
+    card.setAttribute("data-link", true);
 
     const imagem = document.createElement("div");
     imagem.classList.add("game-img");
@@ -23,6 +25,12 @@ export const criaCard = (nome, desconto, url) => {
     card.appendChild(imagem);
     card.appendChild(titulo);
     card.appendChild(p);
+
+
+
+
+
+
 
     return card;
 };
@@ -47,9 +55,55 @@ export const criaSecaoJogos = () => {
     secao.appendChild(h2);
     secao.appendChild(div);
     dados.forEach((jogo) => {
-        div.appendChild(criaCard(jogo.titulo, jogo.descricao,jogo.url_imagem))
+        div.appendChild(criaCard(jogo.titulo, jogo.descricao, jogo.url_imagem, jogo.appid))
     });
 
     return secao;
 };
 
+export let criaSecaoJogoPrincipal = (nomeJogo, descricao, urlImg) => {
+    const section = document.createElement("section");
+    section.classList.add("jogo");
+
+    const divContent = document.createElement("div");
+    divContent.classList.add("jogo-content");
+
+    const divInfo = document.createElement("div");
+    divInfo.classList.add("jogo-info");
+
+    const h1 = document.createElement("h1");
+    h1.textContent = nomeJogo;
+    divInfo.appendChild(h1);
+
+    const p = document.createElement("p");
+    p.textContent = descricao;
+    divInfo.appendChild(p);
+
+    const btComprarJogo = document.createElement("button");
+    btComprarJogo.classList.add("cta");
+    btComprarJogo.textContent = "Comprar " + nomeJogo;
+    divInfo.appendChild(btComprarJogo);
+
+    divContent.appendChild(divInfo);
+
+    const divImagem = document.createElement("div");
+    divImagem.classList.add("jogo-imagem");
+
+    const img = document.createElement("img");
+    img.src = urlImg;
+    img.alt = "Imagem do jogo " + nomeJogo;
+    divImagem.appendChild(img);
+
+    divContent.appendChild(divImagem);
+
+    section.appendChild(divContent);
+
+    return section;
+}
+
+
+
+
+export let encontrarJogo = (id) => {
+    return dados.find(jogo => {return jogo.appid == id})
+}

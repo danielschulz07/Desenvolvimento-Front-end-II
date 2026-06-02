@@ -134,3 +134,170 @@ footer {
     font-size: 18px;
     margin-bottom: 30px;
 }
+
+/* CONTATO */
+
+.contact {
+    height: 70vh;
+    background: linear-gradient(to right, #1b2838, #0f1c2c);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 10%;
+}
+
+.contact h2 {
+    color: #66c0f4;
+    font-size: 42px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contact form {
+    background-color: #2a475e;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact input {
+    padding: 15px;
+    border: 1px solid #66c0f4;
+    border-radius: 5px;
+    background-color: #1b2838;
+    color: #c7d5e0;
+    font-size: 16px;
+}
+
+.contact input::placeholder {
+    color: #8f98a0;
+}
+
+.contact input:focus {
+    outline: none;
+    border-color: #66c0f4;
+    box-shadow: 0 0 10px rgba(102, 192, 244, 0.4);
+}
+
+.contact button {
+    background-color: #66c0f4;
+    color: #1b2838;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact button:hover {
+    background-color: #4fa6d8;
+    transform: translateY(-2px);
+}
+
+
+/* COMUNIDADE */
+
+.comunidade {
+    height: 87vh;
+    padding: 40px 10%;
+    background: linear-gradient(to right, #1b2838, #0f1c2c);
+}
+
+.comunidade-banner {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.comunidade-banner h1 {
+    font-size: 48px;
+    color: #66c0f4;
+    margin-bottom: 15px;
+}
+
+.comunidade-banner p {
+    font-size: 18px;
+    color: #c7d5e0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.comunidade-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card-comunidade {
+    background-color: #2a475e;
+    border-radius: 8px;
+    padding: 25px;
+    transition: 0.3s;
+}
+
+.card-comunidade:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(102, 192, 244, 0.3);
+}
+
+.card-comunidade h2 {
+    color: #66c0f4;
+    margin-bottom: 15px;
+}
+
+.card-comunidade p {
+    margin-bottom: 20px;
+    color: #c7d5e0;
+    line-height: 1.5;
+}
+
+
+/* SOBRE */
+
+.sobre {
+    height: 87vh;
+    background: linear-gradient(to right, #1b2838, #0f1c2c);
+    padding: 60px 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sobre-container {
+    max-width: 900px;
+    text-align: center;
+}
+
+.sobre h1 {
+    font-size: 48px;
+    color: #66c0f4;
+    margin-bottom: 25px;
+}
+
+.sobre h2 {
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+
+.sobre p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #c7d5e0;
+}
+
+.sobre ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.sobre li {
+    padding: 10px;
+    font-size: 18px;
+}

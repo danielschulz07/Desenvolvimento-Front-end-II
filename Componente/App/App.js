@@ -28,23 +28,6 @@ const initJogo = () => {
     root.appendChild(criaFooter())
 }
 
-const paginaJogoHTMl = () => {
-    const obj = document.createElement('section');
-    obj.innerHTML = `<section class="jogo">
-        <div class="jogo-content">            
-            <div class="jogo-info">
-                <h1>NOME DO JOGO</h1>
-                <p>DESCRIÇÃO DO JOGO</p>
-                <button class="cta">Comprar NOME DO JOGO</button>
-            </div>        
-            <div class="jogo-imagem">
-                <img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="NOME DO JOGO">
-            </div>
-        </div>
-    </section>`
-    return obj
-}
-
 const criaHero = () => {
     const obj = document.createElement('section');
     obj.innerHTML = `<section class="hero">
@@ -171,6 +154,142 @@ window.addEventListener("popstate", function() {
     rednerizandoRotas(window.location.pathname);
 })
 
+const criaComunidade = () => {
+    const section = document.createElement('section');
+    section.classList.add('comunidade');
+
+    const container = document.createElement('div');
+    container.classList.add('comunidade-container');
+
+    // Banner
+    const banner = document.createElement('div');
+    banner.classList.add('comunidade-banner');
+
+    const titulo = document.createElement('h1');
+    titulo.textContent = 'Comunidade Steam';
+
+    const descricao = document.createElement('p');
+    descricao.textContent =
+        'Conheça novos jogadores, participe de discussões, compartilhe capturas de tela, vídeos e avaliações.';
+
+    banner.appendChild(titulo);
+    banner.appendChild(descricao);
+
+    // Grid
+    const grid = document.createElement('div');
+    grid.classList.add('comunidade-grid');
+
+    const cards = [
+        {
+            titulo: '🎮 Discussões',
+            descricao: 'Participe de fóruns sobre seus jogos favoritos.',
+            botao: 'Explorar'
+        },
+        {
+            titulo: '📸 Capturas',
+            descricao: 'Compartilhe suas melhores screenshots.',
+            botao: 'Ver Galeria'
+        },
+        {
+            titulo: '🎥 Vídeos',
+            descricao: 'Assista a conteúdos criados pela comunidade.',
+            botao: 'Assistir'
+        },
+        {
+            titulo: '🏆 Conquistas',
+            descricao: 'Compare suas conquistas com outros jogadores.',
+            botao: 'Visualizar'
+        },
+        {
+            titulo: '⭐ Análises',
+            descricao: 'Leia avaliações da comunidade Steam.',
+            botao: 'Ler Análises'
+        }
+    ];
+
+    cards.forEach(card => {
+
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('card-comunidade');
+
+        const h2 = document.createElement('h2');
+        h2.textContent = card.titulo;
+
+        const p = document.createElement('p');
+        p.textContent = card.descricao;
+
+        const button = document.createElement('button');
+        button.classList.add('cta');
+        button.textContent = card.botao;
+
+        cardDiv.appendChild(h2);
+        cardDiv.appendChild(p);
+        cardDiv.appendChild(button);
+
+        grid.appendChild(cardDiv);
+    });
+
+    container.appendChild(banner);
+    container.appendChild(grid);
+
+    section.appendChild(container);
+
+    return section;
+};
+
+const criaSobre = () => {
+
+    const section = document.createElement('section');
+    section.classList.add('sobre');
+
+    const container = document.createElement('div');
+    container.classList.add('sobre-container');
+
+    const titulo = document.createElement('h1');
+    titulo.textContent = 'Sobre a Steam';
+
+    const descricao = document.createElement('p');
+    descricao.textContent =
+        'A Steam é uma plataforma digital de distribuição de jogos desenvolvida pela Valve. Além de comprar e baixar jogos, os usuários podem participar de comunidades, compartilhar conteúdos, conversar com amigos e acompanhar suas conquistas.';
+
+    const subtitulo = document.createElement('h2');
+    subtitulo.textContent = 'O que você encontra aqui?';
+
+    const lista = document.createElement('ul');
+
+    const itens = [
+        '🎮 Catálogo de milhares de jogos',
+        '🛒 Promoções frequentes',
+        '👥 Comunidades de jogadores',
+        '🏆 Sistema de conquistas',
+        '☁️ Salvamento em nuvem',
+        '💬 Chat com amigos'
+    ];
+
+    itens.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        lista.appendChild(li);
+    });
+
+    const botao = document.createElement('button');
+    botao.classList.add('cta');
+    botao.textContent = 'Conhecer Mais';
+
+    container.appendChild(titulo);
+    container.appendChild(descricao);
+    container.appendChild(subtitulo);
+    container.appendChild(lista);
+    container.appendChild(botao);
+
+    section.appendChild(container);
+
+    return section;
+};
+
+
+
+
 const rotas = {
     "/": () => {
         root.appendChild(initApp());
@@ -180,20 +299,19 @@ const rotas = {
     },
     "/Comunidade": () => {
         root.appendChild(criaHeader());
-        root.appendChild(Jogos.criaHero());
+        root.appendChild(criaComunidade());
+        root.appendChild(criaFooter());
     },
     "/Jogos": (id) => {
-                let jogo = Jogos.encontrarJogo(id);
-
+        let jogo = Jogos.encontrarJogo(id);
         root.appendChild(criaHeader());
         root.appendChild(Jogos.criaSecaoJogoPrincipal(jogo.titulo, jogo.descricao, jogo.url_imagem  ));
         root.appendChild(criaFooter());
     },
     "/Sobre": () => {
         root.appendChild(criaHeader());
-        root.appendChild(
-            criaHero("Sobre", "A STEAM é uma plataforma")
-        );
+        root.appendChild(criaSobre());
+        root.appendChild(criaFooter());
     },
     "/Instalar": () => {
         root.innerHTML = `<h1>Deu certo o instalador</h1>`;
@@ -228,7 +346,6 @@ function rednerizandoRotas(path) {
         `;
     }
 }
-
 
 
 
